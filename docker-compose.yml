@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  cpython_binding:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        http_proxy: $http_proxy
+        https_proxy: $https_proxy
+    container_name: cpython_bindings
+    volumes:
+    - ./:/cpython_bindings
+    working_dir: /cpython_bindings
+    tty: true
+    command: python3 setup.py build_ext --inplace
+
